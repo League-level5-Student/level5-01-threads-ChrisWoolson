@@ -10,7 +10,10 @@ ConcurrentLinkedQueue <Task> taskQueue;
 ThreadPool(int totalT){
 	threads = new Thread[totalT];
 	for (int i = 0; i < threads.length; i++) {
-		threads[i].run();
+		System.out.println(threads.length);
+		threads[i] = new Thread(()->new Worker(taskQueue).run());
+		
+		//threads[i].run();
 	}
 	
 	taskQueue = new ConcurrentLinkedQueue <Task>();
@@ -22,17 +25,22 @@ void addTask(Task task){
 }
 
 void start() {
+	
+	
 	for (int i = 0; i < threads.length; i++) {
 		threads[i].start();
 		
+		
+		
+		
+	}
+	for (int i = 0; i < threads.length; i++) {
 		try {
 			threads[i].join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 	
