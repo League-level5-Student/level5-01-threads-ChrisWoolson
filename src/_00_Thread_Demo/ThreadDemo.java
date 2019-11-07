@@ -21,6 +21,8 @@ public class ThreadDemo {
 			tammy.moveTo(800, 700);
 			sammy.moveTo(1200, 700);
 			
+			
+			
 			Thread r1 = new Thread(()->{
 				timmy.move(400);
 			
